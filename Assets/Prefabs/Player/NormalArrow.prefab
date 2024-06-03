@@ -156,13 +156,15 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738988701415454281}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 3864105ed805c1b4b8ec381c3f463423, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: -6807121069868484047, guid: 3864105ed805c1b4b8ec381c3f463423, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []

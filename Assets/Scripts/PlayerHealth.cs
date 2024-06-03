@@ -19,10 +19,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("No Death Canvas");
         }
+        else
+        {
+            deathCanvas.SetActive(false);
+        }
 
         sceneLoader = FindObjectOfType<SceneLoader>();
-
-        deathCanvas.SetActive(false);
+        
         currentHealth = maxHealth;
     }
 

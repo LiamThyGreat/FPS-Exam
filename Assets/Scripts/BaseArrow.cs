@@ -13,6 +13,12 @@ public class BaseArrow : MonoBehaviour
 
     protected virtual void Awake()
     {
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if(audioManager != null)
+        {
+            audioManager.PlaySFX();
+        }
+
         bc = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         if (rb == null)
