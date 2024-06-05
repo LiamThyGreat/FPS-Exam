@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float maxHealth;
 
     private float currentHealth;
+    public bool isBlocking;
 
     SceneLoader sceneLoader;
 
@@ -31,25 +32,28 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageToTake)
     {
-        currentHealth -= damageToTake;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-        UpdateHealthBar();
-
-        Debug.Log(currentHealth);
-
-        if(currentHealth <= 0f)
+        if (!isBlocking)
         {
-            if (deathCanvas != null)
+            currentHealth -= damageToTake;
+            currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+            UpdateHealthBar();
+
+            Debug.Log(currentHealth);
+
+            if (currentHealth <= 0f)
             {
-                deathCanvas.SetActive(true);
-                Time.timeScale = 0f;
-                gameObject.SetActive(false);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                sceneLoader.ReloadScene();
+                if (deathCanvas != null)
+                {
+                    deathCanvas.SetActive(true);
+                    Time.timeScale = 0f;
+                    gameObject.SetActive(false);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+                else
+                {
+                    sceneLoader.ReloadScene();
+                }
             }
         }
     }

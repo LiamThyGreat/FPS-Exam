@@ -8,6 +8,7 @@ public class SwordAttackScript : MonoBehaviour
 
     [SerializeField] GameObject hitParticle;
     [SerializeField] KeyCode attack = KeyCode.Mouse0;
+    [SerializeField] KeyCode block = KeyCode.Q;
     [SerializeField] float attackDamage;
 
     public bool isGrounded;
@@ -22,9 +23,11 @@ public class SwordAttackScript : MonoBehaviour
     BoxCollider bc;
     public Rigidbody rb;
     public PlayerMovement movement;
+    PlayerHealth playerHealth;
 
     private void Start()
     {
+        playerHealth = GetComponentInParent<PlayerHealth>();
         bc = GetComponent<BoxCollider>();
         rb = GetComponentInParent<Rigidbody>();
         movement = GetComponentInParent<PlayerMovement>();
@@ -35,6 +38,15 @@ public class SwordAttackScript : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKey(block) && !isAimingBow && !inputRecieved)
+        {
+            playerHealth.isBlocking = true;
+        }
+        else
+        {
+            playerHealth.isBlocking = false;
+        }
+        
         if (Input.GetKey(attack) && !isAimingBow && canRecieveInput && isGrounded)
         {
             inputRecieved = true;

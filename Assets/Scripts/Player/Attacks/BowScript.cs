@@ -17,7 +17,7 @@ public class BowScript : MonoBehaviour
     [SerializeField] private float arrowShootSpeed;
 
     public bool bowEquipped = false;
-    private bool readyToShoot = true;
+    public bool readyToShoot = true;
     private BaseArrow currentArrowPrefab;
 
     SwordAttackScript swordAttackScript;
