@@ -5,14 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-
     private float moveSpeed;
-
     [SerializeField] float walkSpeed;
     [SerializeField] float sprintSpeed;
-
     [SerializeField] float groundDrag;
-
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
     [SerializeField] float airMultiplier;
@@ -20,12 +16,10 @@ public class PlayerMovement : MonoBehaviour
     bool readyToJump = true;
 
     [Header("Keybinds")]
-
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("GroundCheck")]
-
     [SerializeField] float playerHeight;
     [SerializeField] LayerMask whatIsGround;
 
@@ -37,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
 
     [SerializeField] Transform oriantation;
+    [SerializeField] Animator swordAnim;
 
     float horizontalInput;
     float verticalInput;
@@ -71,11 +66,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
+            swordAnim.SetBool("IsGrounded", true);
             swordScript.isGrounded = true;
             rb.drag = groundDrag;
         }
         else
         {
+            swordAnim.SetBool("IsGrounded", false);
             swordScript.isGrounded = false;
             rb.drag = 0f;
         }
@@ -103,11 +100,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && Input.GetKey(sprintKey))
         {
+            swordAnim.SetBool("IsSprinting", true);
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
         }
         else if (isGrounded)
         {
+            swordAnim.SetBool("IsSprinting", false);
             state = MovementState.walking;
             moveSpeed = walkSpeed;
         }

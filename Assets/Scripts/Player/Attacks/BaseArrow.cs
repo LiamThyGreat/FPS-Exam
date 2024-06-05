@@ -7,6 +7,8 @@ public class BaseArrow : MonoBehaviour
     [SerializeField] protected float arrowDamage;
     [SerializeField] protected float shootSpeed;
 
+    protected bool isOnEnemy = false;
+
     protected Transform enemy;
     protected Rigidbody rb;
     protected Collider bc;
@@ -33,6 +35,10 @@ public class BaseArrow : MonoBehaviour
         {
             transform.position = enemy.transform.position;
         }
+        if(enemy == null && isOnEnemy)
+        {
+            Destroy(gameObject); 
+        }
     }
 
     public virtual void Shoot(Vector3 direction)
@@ -49,6 +55,7 @@ public class BaseArrow : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            isOnEnemy = true;
             bc.enabled = false;
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(arrowDamage);
@@ -61,6 +68,7 @@ public class BaseArrow : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Dummy"))
         {
+            isOnEnemy = true;
             bc.enabled = false;
 
             collision.gameObject.GetComponent<DummyScript>().Damaged(arrowDamage);

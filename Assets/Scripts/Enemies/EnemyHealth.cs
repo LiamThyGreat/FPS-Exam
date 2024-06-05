@@ -13,8 +13,11 @@ public class EnemyHealth : MonoBehaviour
     [Header("Player Checking")]
     [SerializeField] GameObject enemyHealthCanvas;
     [SerializeField] float playerCheckRadius;
+    [SerializeField] float timeTillCanvasTurnsOff;
     
     private float enemyHealth;
+    private bool canvasIsOn = false;
+    private bool enemyUnderAttack = false;
     private Transform playerTransform;
 
     void Start()
@@ -32,6 +35,13 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (!canvasIsOn)
+        {
+            enemyHealthCanvas.SetActive(true);
+        }
+
+        enemyUnderAttack = true;
+        StartCoroutine(CanvasTurnOffRoutine());
         enemyHealth -= damage;
         enemyHealth = Mathf.Clamp(enemyHealth, 0f, enemyMaxHealth);
         UpdateHealthBar();
@@ -59,10 +69,21 @@ public class EnemyHealth : MonoBehaviour
         if(distanceToPlayer <= playerCheckRadius)
         {
             enemyHealthCanvas.SetActive(true);
+
+            canvasIsOn = true;
         }
-        else
+        else if(!enemyUnderAttack)
         {
             enemyHealthCanvas.SetActive(false);
+
+            canvasIsOn = false;
         }
+    }
+
+    IEnumerator CanvasTurnOffRoutine()
+    {
+        yield return new WaitForSeconds(timeTillCanvasTurnsOff);
+
+        enemyUnderAttack = false;
     }
 }

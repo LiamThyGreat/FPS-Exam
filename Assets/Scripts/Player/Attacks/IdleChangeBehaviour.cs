@@ -2,27 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordIdle1Behaviour : StateMachineBehaviour
+public class IdleChangeBehaviour : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        SwordAttackScript.instance.RemoveCollider();
-        SwordAttackScript.instance.canRecieveInput = true;
-        SwordAttackScript.instance.isAttacking = false;
+        SwordAttackScript.instance.canRecieveInput = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (SwordAttackScript.instance.inputRecieved)
-        {
-            SwordAttackScript.instance.EnableCollider();
-            SwordAttackScript.instance.isAttacking = true;
-            SwordAttackScript.instance.InputManager();
-            animator.SetTrigger("Attack2");
-        }
-    }
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

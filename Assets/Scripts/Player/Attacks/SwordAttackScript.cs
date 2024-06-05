@@ -76,7 +76,6 @@ public class SwordAttackScript : MonoBehaviour
         isAttacking = false;
     }
 
-    
     public void InputManager()
     {
         if (canRecieveInput)
@@ -101,5 +100,16 @@ public class SwordAttackScript : MonoBehaviour
     public void RemoveCollider()
     {
         bc.enabled = false;
+    }
+
+    public void StartCooldownRoutine()
+    {
+        StartCoroutine(AttackCooldownAfterBow());
+    }
+    IEnumerator AttackCooldownAfterBow()
+    {
+        yield return new WaitForSeconds(1);
+
+        canRecieveInput = true;
     }
 }

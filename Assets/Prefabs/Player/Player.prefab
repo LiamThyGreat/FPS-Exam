@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6616687840468725358
 Transform:
   m_ObjectHideFlags: 0
@@ -462,6 +462,7 @@ MonoBehaviour:
     m_Bits: 8
   maxSlopeAngle: 50
   oriantation: {fileID: 1887295801436656870}
+  swordAnim: {fileID: 9195700963032354384}
   state: 0
 --- !u!114 &4613502508718657187
 MonoBehaviour:
@@ -501,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8506381635505939909, guid: 0ab9b71808e494449bccbfbc2b5fb06c, type: 3}
   arrowSpawnPoint: {fileID: 6816747174263528809}
-  shootShuruken: 113
+  shootShuruken: 102
   shurukenDamage: 15
   playerCamera: {fileID: 0}
   canThrowShuruken: 1
@@ -517,8 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2c1415f06329a4f8695ca4857e333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathCanvas: {fileID: 0}
   healthBar: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 300
 --- !u!1001 &7426429657377982415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -584,5 +586,10 @@ GameObject:
 --- !u!4 &6546254830745476356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4456033074730506955, guid: e83564ba272979e45952928e458612ea, type: 3}
+  m_PrefabInstance: {fileID: 7426429657377982415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9195700963032354384 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1770560218266208671, guid: e83564ba272979e45952928e458612ea, type: 3}
   m_PrefabInstance: {fileID: 7426429657377982415}
   m_PrefabAsset: {fileID: 0}

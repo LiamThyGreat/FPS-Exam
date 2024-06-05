@@ -39,6 +39,7 @@ public class BowScript : MonoBehaviour
         if (Input.GetKey(aimBow))
         {
             swordAttackScript.isAimingBow = true;
+            swordAttackScript.canRecieveInput = false;
 
             sword.SetActive(false);
             bow.SetActive(true);
@@ -55,6 +56,7 @@ public class BowScript : MonoBehaviour
 
             sword.SetActive(true);
             bow.SetActive(false);
+            swordAttackScript.StartCooldownRoutine();
         }
 
         if (Input.GetKeyDown(switchArrowType))
